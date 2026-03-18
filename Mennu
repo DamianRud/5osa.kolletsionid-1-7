@@ -1,0 +1,68 @@
+using _5.osa_Kollektsioonid;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+class Mennu
+{
+    static void Main(string[] args)
+    {
+        int valik;
+
+        do
+        {
+            Console.WriteLine("=======MENU========");
+            Console.WriteLine("1 - Käivita nimede programm");
+            Console.WriteLine("2 - Marsruut");
+            Console.WriteLine("3 - Näita inimesi");
+            Console.WriteLine("4 - LinkedListDemo");
+            Console.WriteLine("5 - Arvude massiivi statistika");
+            Console.WriteLine("6 - Lemmikloomade");
+            Console.WriteLine("7 - Valukalkulator");
+            Console.WriteLine("0 - Välju");
+            Console.WriteLine("===================");
+
+            Console.Write("Valik: ");
+            valik = int.Parse(Console.ReadLine());
+
+            switch (valik)
+            {
+                case 1:
+                    Funktsionid.Nimed();
+                    break;
+
+                case 2:
+                    Funktsionid.Marsruut();
+                    break;
+
+                case 3:
+                    Funktsionid.list_Remove();
+                    break;
+                case 4:
+                    Funktsionid.LinkedListDemo();
+                    break;
+
+                case 5:
+                    Funktsionid.ArvudeStatistika();
+                    break;
+                case 6:
+                    Funktsionid.LemmikloomadeProgramm();
+                    break;
+
+                case 7:
+                    Funktsionid.ValuutaKalkulaator();
+                    break;
+                case 0:
+                    Console.WriteLine("Väljun programmi.");
+                    break;
+
+                default:
+                    Console.WriteLine("Vale valik, proovige uuesti.");
+                    break;
+            }
+
+        } while (valik != 0);
+    }
+}
+
+
