@@ -1,0 +1,290 @@
+using _5.osa_Kollektsioonid;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Xml.Linq;
+
+namespace _5.osa_Kollektsioonid
+{
+    public class Funktsionid
+    {
+        public static void Nimed()
+        {
+            ArrayList nimed = new ArrayList();
+            nimed.Add("Kati");
+            nimed.Add("Mati");
+            nimed.Add("Juku");
+
+            if (nimed.Contains("Mati"))
+                Console.WriteLine("Mati olemas");
+
+            Console.WriteLine("Nimesid kokku: " + nimed.Count);
+
+            nimed.Insert(1, "Sass");
+
+            Console.WriteLine("Mati indeks: " + nimed.IndexOf("Mati"));
+            Console.WriteLine("Mari индекс: " + nimed.IndexOf("Mari"));
+
+            foreach (string nimi in nimed)
+                Console.WriteLine(nimi);
+        }
+
+        public static void Marsruut()
+        {
+            Tuple<float, char> route = new Tuple<float, char>(2.5f, 'N');
+            Console.WriteLine($"Vahemaa: {route.Item1}, Suund: {route.Item2}");
+        }
+
+        public static void ShowPeople()
+        {
+            List<Person> people = new List<Person>();
+            people.Add(new Person() { Name = "Kadi" });
+            people.Add(new Person() { Name = "Mirje" });
+
+            Person Lisa = new Person() { Name = "Kadi" };
+            foreach (Person p in people)
+                Console.WriteLine(p.Name);
+
+            people.Remove(Lisa);
+
+            foreach (Person p in people)
+                Console.WriteLine(p.Name);
+        }
+
+        public static void list_Remove()
+        {
+            List<string> people = new List<string>() { "Kadi", "Mirje" };
+
+            foreach (string p in people)
+                Console.WriteLine(p);
+
+            people.Add("Lisa");
+            people.Remove("Lisa");
+
+            Console.WriteLine("pärast eemaldamine Lisa:");
+            foreach (string p in people)
+                Console.WriteLine(p);
+
+            people.RemoveAt(0);
+            people.Insert(0, "Anna");
+            people.Insert(1, "Mari");
+
+            people.Sort();
+
+            Console.WriteLine("Tähestikuline järjestus:");
+            foreach (string p in people)
+                Console.WriteLine(p);
+
+            people.Sort((a, b) => a.Length.CompareTo(b.Length));
+
+            Console.WriteLine("Sorteerimine nime pikkuse järgi:");
+            foreach (string p in people)
+                Console.WriteLine(p);
+        }
+
+        public static void LinkedListDemo()
+        {
+            LinkedList<int> loetelu = new LinkedList<int>();
+            loetelu.AddLast(5);
+            loetelu.AddLast(3);
+            loetelu.AddFirst(0);
+
+            Console.WriteLine("esialgne nimekiri");
+            foreach (int arv in loetelu)
+                Console.WriteLine(arv);
+
+            loetelu.RemoveFirst();
+            loetelu.RemoveLast();
+            loetelu.AddLast(555);
+            loetelu.Remove(555);
+
+            Console.WriteLine("pärast operatsionid:");
+            foreach (int arv in loetelu)
+                Console.WriteLine(arv);
+        }
+
+        public static void sõnastik()
+        {
+            Dictionary<int, string> riigid = new Dictionary<int, string>();
+            riigid.Add(1, "Hiina");
+            riigid.Add(2, "Eesti");
+            riigid.Add(3, "Itaalia");
+
+            foreach (var paar in riigid)
+                Console.WriteLine($"{paar.Key} - {paar.Value}");
+
+            string pealinn = riigid[2];
+            riigid[2] = "Eestimaa";
+            riigid.Remove(3);
+
+
+            Dictionary<char, Person> inimesed = new Dictionary<char, Person>();
+            inimesed.Add('k', new Person() { Name = "Kadi" });
+            inimesed.Add('m', new Person() { Name = "Mait" });
+
+            foreach (var entry in inimesed)
+                Console.WriteLine($"{entry.Key} - {entry.Value.Name}");
+        }
+        public static void ArvudeStatistika()
+        {
+
+            {
+
+                double[] numbrid = { 10.5, 20, 5.7, 30, 15.2 };
+
+
+                double summa = 0;
+                foreach (double n in numbrid)
+                {
+                    summa = summa + n;
+                }
+
+
+                double keskmine = summa / numbrid.Length;
+
+
+                double max = numbrid[0];
+                double min = numbrid[0];
+
+                foreach (double n in numbrid)
+                {
+                    if (n > max)
+                    {
+                        max = n;
+                    }
+
+                    if (n < min)
+                    {
+                        min = n;
+                    }
+                }
+
+
+                int rohkemKuiKeskmine = 0;
+                foreach (double n in numbrid)
+                {
+                    if (n > keskmine)
+                    {
+                        rohkemKuiKeskmine++;
+                    }
+                }
+
+                Console.WriteLine("--- Arvude Statistika (Vana viis) ---");
+
+                Console.Write("Massiiv: ");
+                foreach (double n in numbrid)
+                {
+
+                }
+
+                Console.WriteLine($"Maksimaalne: {max}");
+                Console.WriteLine($"Minimaalne: {min}");
+                Console.WriteLine($"Summa: {summa}");
+                Console.WriteLine($"Keskmine: {keskmine:F2}");
+                Console.WriteLine($"Arve, mis on suuremad kui keskmine: {rohkemKuiKeskmine}");
+                {
+
+                }
+            }
+        }
+
+            public static void LemmikloomadeProgramm()
+        {
+            
+            List<Lemmikloom> loomad = new List<Lemmikloom>();
+
+          
+            Lemmikloom loom1 = new Lemmikloom();
+            loom1.Nimi = "Murka";
+            loom1.Liik = "kass";
+            loom1.Vanus = 5;
+            loomad.Add(loom1); 
+
+            
+            loomad.Add(new Lemmikloom { Nimi = "Sharik", Liik = "koer", Vanus = 8 });
+            loomad.Add(new Lemmikloom { Nimi = "Kiti", Liik = "kass", Vanus = 2 });
+
+          
+            Console.WriteLine("--- Meie kassid: ---");
+            foreach (Lemmikloom l in loomad)
+            {
+                if (l.Liik == "kass")
+                {
+                    Console.WriteLine($"{l.Nimi}, vanus: {l.Vanus}");
+                }
+            }
+
+            
+            Lemmikloom vanim = loomad[0]; 
+            foreach (Lemmikloom l in loomad)
+            {
+                if (l.Vanus > vanim.Vanus)
+                {
+                    vanim = l; 
+                }
+            }
+
+            Console.WriteLine($"Vanim loom on {vanim.Nimi}, ta on {vanim.Liik} ta on  {vanim.Vanus} aastat vana.");
+        }
+        public static void ValuutaKalkulaator()
+        {
+            
+            List<Valuuta> valuutad = new List<Valuuta>();
+            valuutad.Add(new Valuuta { Nimetus = "USD", Kurss = 0.92 }); 
+            valuutad.Add(new Valuuta { Nimetus = "GBP", Kurss = 1.17 }); 
+            valuutad.Add(new Valuuta { Nimetus = "JPY", Kurss = 0.006 }); 
+
+            
+            Console.Write("Sisesta summa: ");
+            double summa = double.Parse(Console.ReadLine());
+
+            Console.Write("Sisesta valuuta nimi (USD, GBP, JPY): ");
+            string otsitav = Console.ReadLine().ToUpper(); 
+
+            
+            bool leitud = false;
+            foreach (Valuuta v in valuutad)
+            {
+                if (v.Nimetus == otsitav)
+                {
+                    double tulemus = summa * v.Kurss;
+                    Console.WriteLine($"{summa} {v.Nimetus} on {tulemus:F2} EUR");
+
+                    
+                    double tagurpidi = summa / v.Kurss;
+                    Console.WriteLine($"{summa} EUR on {tagurpidi:F2} {v.Nimetus}");
+
+                    leitud = true;
+                    break; 
+                }
+            }
+
+            if (!leitud)
+            {
+                Console.WriteLine("Sellist valuutat ei leitud!");
+            }
+
+        }
+    }
+    }
+
+
+public class Valuuta
+{
+    public string Nimetus { get; set; }      
+    public double Kurss { get; set; } 
+}
+
+public class Lemmikloom
+{
+    public string Nimi { get; set; }
+    public string Liik { get; set; }
+    public int Vanus { get; set; }
+}
+
+
+
+class Person
+    {
+        public string Name { get; set; }
+    }
